@@ -294,7 +294,7 @@ end TCL_Generic;
       <polyline fill="none" points="297,293 297,328" stroke="#000000"/>
       <polyline fill="none" points="350,381 344,469" stroke="#000000" stroke-width="2"/>
       <polyline points="131,201 111,242 99,272 87,307 86,322 95,327 104,327 114,325" stroke="#000000"/>
-      <polyline points="151,173 105,174 127,204 101,435 396,438 374,225 408,179 353,173" stroke="#000000"/>
+      <polyline points="150,172 104,173 126,203 100,434 395,437 373,224 407,178 352,172" stroke="#000000"/>
       <polyline points="152,432 155,466 162,465 173,431" stroke="#000000"/>
       <polyline points="172,178 138,298 138,185" stroke="#000000"/>
       <polyline points="226,131 235,129 235,135 226,135" stroke="none"/>
