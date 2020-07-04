@@ -180,12 +180,18 @@ end TCL_Generic;
     <a name="clabel" val=""/>
     <a name="clabelfont" val="SansSerif bold 16"/>
     <a name="clabelup" val="east"/>
+    <comp lib="0" loc="(360,660)" name="Clock">
+      <a name="label" val="CLK"/>
+    </comp>
+    <comp lib="5" loc="(360,630)" name="Button">
+      <a name="label" val="RST"/>
+    </comp>
     <comp loc="(600,380)" name="COMPUTER"/>
-    <wire from="(300,380)" to="(380,380)"/>
-    <wire from="(300,400)" to="(380,400)"/>
-    <wire from="(300,420)" to="(380,420)"/>
-    <wire from="(300,440)" to="(380,440)"/>
-    <wire from="(600,380)" to="(660,380)"/>
+    <wire from="(360,630)" to="(370,630)"/>
+    <wire from="(360,660)" to="(380,660)"/>
+    <wire from="(370,420)" to="(370,630)"/>
+    <wire from="(370,420)" to="(380,420)"/>
+    <wire from="(380,440)" to="(380,660)"/>
   </circuit>
   <circuit name="COMPUTER">
     <a name="appearance" val="custom"/>
@@ -202,113 +208,16 @@ end TCL_Generic;
       <circ-port height="8" pin="150,580" width="8" x="136" y="136"/>
       <circ-port height="8" pin="150,610" width="8" x="136" y="156"/>
       <circ-port height="8" pin="1630,530" width="8" x="136" y="116"/>
-      <ellipse cx="215.5" cy="120.5" fill="#884dff" rx="3.5" ry="2.5" stroke="#000000"/>
-      <ellipse cx="215.5" cy="120.5" fill="#884dff" rx="5.5" ry="4.5" stroke="#000000"/>
-      <ellipse cx="215.5" cy="120.5" rx="0.5" ry="0.5" stroke="none"/>
-      <ellipse cx="215.5" cy="120.5" rx="1.5" ry="1.5" stroke="none"/>
-      <ellipse cx="292.5" cy="120.5" fill="#884dff" rx="3.5" ry="2.5" stroke="#000000"/>
-      <ellipse cx="292.5" cy="120.5" fill="#884dff" rx="5.5" ry="4.5" stroke="#000000"/>
-      <ellipse cx="292.5" cy="120.5" rx="1.5" ry="1.5" stroke="none"/>
-      <path d="M118,338 Q111,323 142,325" fill="none" stroke="#fdfdff"/>
-      <path d="M128,205 Q85,295 85,322" fill="none" stroke="#000000"/>
-      <path d="M128,325 Q138,330 130,334" fill="none" stroke="#fdfdff"/>
-      <path d="M133,341 Q131,350 118,338" fill="none" stroke="#fdfdff"/>
-      <path d="M133,343 Q143,348 145,340" fill="none" stroke="#fdfdff"/>
-      <path d="M135,236 Q128,221 159,223" fill="none" stroke="#fdfdff"/>
-      <path d="M137,411 Q130,396 161,398" fill="none" stroke="#fdfdff"/>
-      <path d="M138,337 Q148,342 149,339" fill="none" stroke="#fdfdff"/>
-      <path d="M142,325 Q149,329 145,333" fill="none" stroke="#fdfdff"/>
-      <path d="M145,223 Q155,228 147,232" fill="none" stroke="#fdfdff"/>
-      <path d="M147,398 Q157,403 149,407" fill="none" stroke="#fdfdff"/>
-      <path d="M150,239 Q148,248 135,236" fill="none" stroke="#fdfdff"/>
-      <path d="M152,414 Q150,423 137,411" fill="none" stroke="#fdfdff"/>
-      <path d="M152,416 Q162,421 164,413" fill="none" stroke="#fdfdff"/>
-      <path d="M157,410 Q167,415 175,413" fill="none" stroke="#fdfdff"/>
-      <path d="M161,398 Q168,402 164,406" fill="none" stroke="#fdfdff"/>
-      <path d="M166,403 Q174,398 175,413" fill="none" stroke="#fdfdff"/>
-      <path d="M202,121 Q215,129 229,122" fill="#884dff" stroke="#000000"/>
-      <path d="M202,121 Q217,111 229,122" fill="#884dff" stroke="#000000"/>
-      <path d="M206,119 Q205,121 206,123" fill="none" stroke="#000000"/>
-      <path d="M209,124 Q207,121 208,118" fill="none" stroke="#000000"/>
-      <path d="M222,124 Q224,121 222,118" fill="none" stroke="#000000"/>
-      <path d="M225,119 Q226,122 225,123" fill="none" stroke="#000000"/>
-      <path d="M241,153 Q235,152 232,156" fill="none" stroke="#000000"/>
-      <path d="M241,153 Q251,157 265,154" fill="none" stroke="#000000"/>
-      <path d="M264,154 Q270,154 274,157" fill="none" stroke="#000000"/>
-      <path d="M278,122 Q290,110 307,121" fill="#884dff" stroke="#000000"/>
-      <path d="M278,122 Q295,129 307,121" fill="#884dff" stroke="#000000"/>
-      <path d="M282,119 Q281,121 282,123" fill="none" stroke="#000000"/>
-      <path d="M285,117 Q283,122 286,124" fill="none" stroke="#000000"/>
-      <path d="M300,118 Q302,120 300,124" fill="none" stroke="#000000"/>
-      <path d="M303,119 Q304,121 303,123" fill="none" stroke="#000000"/>
-      <path d="M342,424 Q335,409 366,411" fill="none" stroke="#fdfdff"/>
-      <path d="M347,199 Q340,184 371,186" fill="none" stroke="#fdfdff"/>
-      <path d="M347,199 Q340,184 371,186" fill="none" stroke="#fdfdff"/>
-      <path d="M349,317 Q352,314 360,317" fill="none" stroke="#ffffff"/>
-      <path d="M350,335 Q360,340 362,332" fill="none" stroke="#fdfdff"/>
-      <path d="M352,411 Q362,416 354,420" fill="none" stroke="#fdfdff"/>
-      <path d="M355,329 Q365,334 373,332" fill="none" stroke="#fdfdff"/>
-      <path d="M357,186 Q367,191 359,195" fill="none" stroke="#fdfdff"/>
-      <path d="M357,186 Q367,191 359,195" fill="none" stroke="#fdfdff"/>
-      <path d="M357,427 Q355,436 342,424" fill="none" stroke="#fdfdff"/>
-      <path d="M357,429 Q367,434 369,426" fill="none" stroke="#fdfdff"/>
-      <path d="M359,317 Q366,321 362,325" fill="none" stroke="#fdfdff"/>
-      <path d="M362,202 Q360,211 347,199" fill="none" stroke="#fdfdff"/>
-      <path d="M362,202 Q360,211 347,199" fill="none" stroke="#fdfdff"/>
-      <path d="M362,204 Q372,209 374,201" fill="none" stroke="#fdfdff"/>
-      <path d="M362,204 Q372,209 374,201" fill="none" stroke="#fdfdff"/>
-      <path d="M362,423 Q372,428 380,426" fill="none" stroke="#fdfdff"/>
-      <path d="M364,322 Q372,317 373,332" fill="none" stroke="#fdfdff"/>
-      <path d="M366,411 Q373,415 369,419" fill="none" stroke="#fdfdff"/>
-      <path d="M367,198 Q377,203 385,201" fill="none" stroke="#fdfdff"/>
-      <path d="M367,198 Q377,203 385,201" fill="none" stroke="#fdfdff"/>
-      <path d="M371,186 Q378,190 374,194" fill="none" stroke="#fdfdff"/>
-      <path d="M371,186 Q378,190 374,194" fill="none" stroke="#fdfdff"/>
-      <path d="M371,416 Q379,411 380,426" fill="none" stroke="#fdfdff"/>
-      <path d="M374,225 Q413,306 417,334" fill="none" stroke="#000000"/>
-      <path d="M376,191 Q384,186 385,201" fill="none" stroke="#fdfdff"/>
-      <path d="M376,191 Q384,186 385,201" fill="none" stroke="#fdfdff"/>
-      <path d="M417,334 Q408,342 382,339" fill="none" stroke="#000000"/>
-      <path d="M85,322 Q105,334 118,321" fill="none" stroke="#000000"/>
-      <polygon fill="#ff2e49" points="126,326 129,325 143,325 146,328 147,330 150,329 154,330 156,335 156,340 152,341 148,340 145,340 144,343 140,345 136,345 132,343 130,345 126,343 120,340 118,337 117,334 116,332 118,330 120,327" stroke="none"/>
-      <polygon fill="#ff2e49" points="143,224 146,223 160,223 158,224 160,226 159,224 160,225 157,232 156,237 156,237 155,236 157,238 154,242 154,243 153,243 149,241 147,243 143,241 137,238 135,235 134,232 133,230 135,228 137,225" stroke="none"/>
-      <polygon fill="#ff2e49" points="145,399 148,398 162,398 165,401 166,403 169,402 173,403 175,408 175,413 171,414 167,413 164,413 163,416 159,418 155,418 151,416 149,418 145,416 139,413 137,410 136,407 135,405 137,403 139,400" stroke="none"/>
-      <polygon fill="#ff2e49" points="350,412 353,411 367,411 370,414 371,416 374,415 378,416 380,421 380,426 376,427 372,426 369,426 368,429 364,431 360,431 356,429 354,431 350,429 344,426 342,423 341,420 340,418 342,416 344,413" stroke="none"/>
-      <polygon fill="#ff2e49" points="351,316 354,315 360,317 363,320 364,322 367,321 371,322 373,327 373,332 369,333 365,332 362,332 361,335 357,337 353,337 349,335 349,332 350,333 350,333 348,331 350,330 349,329 348,324 349,317" stroke="none"/>
-      <polygon fill="#ff2e49" points="355,187 358,186 372,186 375,189 376,191 379,190 383,191 385,196 385,201 381,202 377,201 374,201 373,204 369,206 365,206 361,204 359,206 355,204 349,201 347,198 346,195 345,193 347,191 349,188" stroke="none"/>
-      <polygon fill="#ff2e49" points="355,187 358,186 372,186 375,189 376,191 379,190 383,191 385,196 385,201 381,202 377,201 374,201 373,204 369,206 365,206 361,204 359,206 355,204 349,201 347,198 346,195 345,193 347,191 349,188" stroke="none"/>
-      <polyline fill="#ff8d40" points="155,77 126,37 141,43 143,30 152,40 161,27 166,37 179,26 189,35 198,18 220,30 230,19 240,37 248,19 255,34 267,24 269,34 276,24 282,33 298,11 296,24 321,23 321,34 340,27 337,42 351,34 349,43 372,40 359,54 376,60 363,64 380,78 353,74 152,70" stroke="#000000"/>
-      <polyline fill="#ff8d40" points="230,114 195,107 219,108 229,111" stroke="#000000"/>
-      <polyline fill="#ff8d40" points="276,109 275,113 317,109 285,109" stroke="#000000"/>
       <polyline fill="none" points="150,225 351,225" stroke="#000000"/>
       <polyline fill="none" points="150,260 350,260" stroke="#000000"/>
       <polyline fill="none" points="150,293 349,293" stroke="#000000" stroke-width="2"/>
       <polyline fill="none" points="151,329 350,329" stroke="#000000" stroke-width="2"/>
-      <polyline fill="none" points="151,380 154,466" stroke="#000000" stroke-width="2"/>
       <polyline fill="none" points="206,293 206,329" stroke="#000000"/>
       <polyline fill="none" points="210,189 210,259" stroke="#000000"/>
-      <polyline fill="none" points="230,114 229,111" stroke="#000000"/>
       <polyline fill="none" points="250,293 250,329" stroke="#000000"/>
-      <polyline fill="none" points="276,109 285,109" stroke="#000000"/>
       <polyline fill="none" points="296,185 296,260" stroke="#000000"/>
       <polyline fill="none" points="297,293 297,328" stroke="#000000"/>
-      <polyline fill="none" points="350,381 344,469" stroke="#000000" stroke-width="2"/>
-      <polyline points="131,201 111,242 99,272 87,307 86,322 95,327 104,327 114,325" stroke="#000000"/>
-      <polyline points="151,173 105,174 127,204 101,435 396,438 374,225 408,179 353,173" stroke="#000000"/>
-      <polyline points="152,432 155,466 162,465 173,431" stroke="#000000"/>
-      <polyline points="172,178 138,298 138,185" stroke="#000000"/>
-      <polyline points="226,131 235,129 235,135 226,135" stroke="none"/>
-      <polyline points="226,138 235,136 235,142 226,142" stroke="none"/>
-      <polyline points="226,145 235,143 235,149 226,149" stroke="none"/>
-      <polyline points="241,160 238,160 240,167 245,160" stroke="none"/>
-      <polyline points="268,160 265,160 270,167 272,160" stroke="none"/>
-      <polyline points="277,131 268,129 268,135 277,135" stroke="none"/>
-      <polyline points="277,138 268,136 268,142 277,142" stroke="none"/>
-      <polyline points="278,146 269,144 269,150 278,150" stroke="none"/>
-      <polyline points="324,434 336,470 343,470 346,437" stroke="#000000"/>
-      <polyline points="335,187 353,318 366,195 341,182" stroke="#000000"/>
-      <polyline points="372,225 373,225 382,243 397,275 406,296 412,312 418,333 411,337 402,340 386,339 370,248" stroke="#000000"/>
-      <rect fill="#ebebf2" height="82" stroke="none" width="202" x="149" y="89"/>
+      <rect fill="#a3f271" height="82" stroke="none" width="202" x="149" y="89"/>
       <rect fill="#ffa9c1" height="189" stroke="#fa319c" stroke-opacity="0.608" width="198" x="151" y="190"/>
       <rect fill="none" height="310" stroke="#000000" stroke-width="2" width="200" x="150" y="70"/>
       <rect height="20" stroke="none" width="200" x="151" y="171"/>
@@ -337,7 +246,7 @@ end TCL_Generic;
       <text dominant-baseline="central" font-family="SansSerif" font-size="12" text-anchor="middle" x="254" y="235">PRESCALER</text>
       <text dominant-baseline="central" font-family="SansSerif" font-size="12" text-anchor="middle" x="261" y="371">7</text>
       <text dominant-baseline="central" font-family="SansSerif" font-size="12" text-anchor="middle" x="274" y="305">SP</text>
-      <text dominant-baseline="central" font-family="SansSerif" font-size="12" text-anchor="middle" x="311" y="370">3</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="12" text-anchor="middle" x="311" y="371">3</text>
       <text dominant-baseline="central" font-family="SansSerif" font-size="12" text-anchor="middle" x="317" y="204">PIN</text>
       <text dominant-baseline="central" font-family="SansSerif" font-size="12" text-anchor="middle" x="318" y="305">PC</text>
       <text dominant-baseline="central" font-family="SansSerif" font-size="12" text-anchor="middle" x="319" y="235">CNT</text>
@@ -355,6 +264,10 @@ end TCL_Generic;
       <visible-led height="10" path="/LED(1820,420)" stroke-width="0" width="10" x="265" y="354"/>
       <visible-led height="10" path="/LED(1840,420)" stroke-width="0" width="10" x="274" y="354"/>
       <visible-led height="10" path="/LED(1860,420)" stroke-width="0" width="10" x="283" y="354"/>
+      <visible-led height="10" path="/LED(1890,420)" stroke-width="0" width="10" x="306" y="354"/>
+      <visible-led height="10" path="/LED(1910,420)" stroke-width="0" width="10" x="315" y="354"/>
+      <visible-led height="10" path="/LED(1930,420)" stroke-width="0" width="10" x="324" y="354"/>
+      <visible-led height="10" path="/LED(1950,420)" stroke-width="0" width="10" x="333" y="354"/>
       <visible-register height="10" path="/CPU(670,150)/Register(680,470)" stroke-width="0" width="26" x="172" y="311"/>
       <visible-register height="10" path="/CPU(670,150)/Register(840,360)" stroke-width="0" width="26" x="215" y="311"/>
       <visible-register height="10" path="/MEMORY(1100,150)/Register(630,110)" stroke-width="0" width="26" x="171" y="210"/>
@@ -410,7 +323,8 @@ end TCL_Generic;
       <a name="addrWidth" val="15"/>
       <a name="appearance" val="logisim_evolution"/>
       <a name="contents">addr/data: 15 16
-3 8090 4 8150 7 8390 6 8007
+17 8150 18 8150 19 8150 1a 8150
+1b 8150 1c 8150 1d 8150 87a0 8007
 </a>
       <a name="dataWidth" val="16"/>
     </comp>
