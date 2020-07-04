@@ -1,3 +1,9 @@
+@3
+D = A
+@MASK
+M = D
+@PRESCALER
+M = 1
 (LOOP)
 @R0
 M = M + 1
