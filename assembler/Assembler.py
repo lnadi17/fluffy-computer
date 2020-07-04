@@ -3,20 +3,20 @@ import argparse
 from Parser import *
 from Code import *
 
-INTERRUPT_VECTOR_CODE = ''
+INTERRUPT_VECTOR_CODE = '@MASK\nD=M\n@INTERRUPT_FUNCTION\nD&1;JGT\nD=0\n'
 
 
 def assemble(file_name, is_binary, has_hex_header, has_interrupt_header):
-    parser = Parser(file_name)
+    if has_interrupt_header:
+        parser = Parser(file_name, header=INTERRUPT_VECTOR_CODE)
+    else:
+        parser = Parser(file_name)
     code = Code()
 
     with open(file_name.split('.')[0] + '_out.bin', 'w') as f:
         # Write hex header.
         if has_hex_header:
             f.write('v3.0 hex words plain\n')
-
-        if has_interrupt_header:
-            f.write(INTERRUPT_VECTOR_CODE)
 
         while parser.select_next():
             if parser.current_type() == 'A':
@@ -59,11 +59,10 @@ def main():
                             help='do not add hex header in output file, '
                                  'which is something like "hex v3.0 words plain"')
     arg_parser.add_argument('-b', '--binary', action='store_true',
-                            help='write output in binary instead of hexadecimal. be aware that interrupt vector header '
-                                 'code is always written in hexadecimal')
+                            help='write output in binary instead of hexadecimal')
     args = arg_parser.parse_args()
 
-    assemble(args.file, args.binary, args.hex_header, args.interrupt_header)
+    assemble(args.file, args.binary, args.no_hex_header, args.interrupt_header)
 
 
 if __name__ == '__main__':

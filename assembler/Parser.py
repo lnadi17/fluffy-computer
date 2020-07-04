@@ -1,5 +1,5 @@
 class Parser:
-    def __init__(self, file_name):
+    def __init__(self, file_name, header=None):
         self.file_name = file_name
         self.current_num = 0
         self.current_str = ''
@@ -10,6 +10,8 @@ class Parser:
 
         with open(file_name, 'r') as f:
             lines = f.read().splitlines()
+            if header is not None:
+                lines = header.splitlines() + lines
             for line in lines:
                 parsed_line = ''.join(line.split()).split('/', 1)[0]
                 if parsed_line != '':
