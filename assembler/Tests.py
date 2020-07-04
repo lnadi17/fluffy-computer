@@ -13,7 +13,7 @@ class TestAssembler(TestCase):
             test_file = 'tests/' + input_file.split('.')[0] + '.bin'
             output_file = 'tests/' + input_file.split('.')[0] + '_out.bin'
             # Act
-            assemble('tests/' + input_file)
+            assemble('tests/' + input_file, suffix='_out')
             # Assert
             with open(test_file, 'r') as f:
                 test_str = f.read()

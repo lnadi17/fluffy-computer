@@ -6,14 +6,14 @@ from Code import *
 INTERRUPT_VECTOR_CODE = '@MASK\nD=M\n@INTERRUPT_FUNCTION\nD&1;JGT\nD=0\n'
 
 
-def assemble(file_name, is_binary, has_hex_header, has_interrupt_header):
+def assemble(file_name, is_binary=False, has_hex_header=True, has_interrupt_header=False, suffix=''):
     if has_interrupt_header:
         parser = Parser(file_name, header=INTERRUPT_VECTOR_CODE)
     else:
         parser = Parser(file_name)
     code = Code()
 
-    with open(file_name.split('.')[0] + '_out.bin', 'w') as f:
+    with open(file_name.split('.')[0] + suffix + '.bin', 'w') as f:
         # Write hex header.
         if has_hex_header:
             f.write('v3.0 hex words plain\n')
