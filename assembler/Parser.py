@@ -98,8 +98,8 @@ class Parser:
         return operator
 
     def is_memory(self):
-        # Stack operation implies that current operation isn't memory operation.
-        if self.is_stack():
+        # Stack pop operation implies that current operation isn't memory operation.
+        if self.is_stack() and self.push_pop() == '1':
             return False
         compute = self.current_str
         if compute.count('=') > 0:
