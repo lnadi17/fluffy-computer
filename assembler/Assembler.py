@@ -1,15 +1,23 @@
 import sys
+import argparse
 from Parser import *
 from Code import *
 
+INTERRUPT_VECTOR_CODE = ''
 
-def assemble(file_name):
+
+def assemble(file_name, is_binary, has_hex_header, has_interrupt_header):
     parser = Parser(file_name)
     code = Code()
 
     with open(file_name.split('.')[0] + '_out.bin', 'w') as f:
-        # Write header.
-        f.write('v3.0 hex words plain\n')
+        # Write hex header.
+        if has_hex_header:
+            f.write('v3.0 hex words plain\n')
+
+        if has_interrupt_header:
+            f.write(INTERRUPT_VECTOR_CODE)
+
         while parser.select_next():
             if parser.current_type() == 'A':
                 out = code.a_code(parser.label())
@@ -23,7 +31,11 @@ def assemble(file_name):
                                   parser.jump())
             if parser.current_type() == 'L':
                 continue
-            f.write(bin_to_hex(out) + '\n')
+
+            if is_binary:
+                f.write(out + '\n')
+            else:
+                f.write(bin_to_hex(out) + '\n')
 
 
 def bin_to_hex(binary_num):
@@ -35,8 +47,23 @@ def bin_to_hex(binary_num):
 
 
 def main():
-    file_name = sys.argv[1]
-    assemble(file_name)
+    # Create argument parser.
+    arg_parser = argparse.ArgumentParser(description='Convert assembly (.asm) file to binary (.bin) file in order to '
+                                                     'load it in fluffy computer\'s ROM and run it.')
+    arg_parser.add_argument('file',
+                            help='name of input assembly file')
+    arg_parser.add_argument('-ih', '--interrupt_header', action='store_true',
+                            help='write interrupt vector code in output file. if this is true, label '
+                                 'with the name "INTERRUPT_FUNCTION" must also be added by the user')
+    arg_parser.add_argument('-nxh', '--no-hex-header', action='store_false',
+                            help='do not add hex header in output file, '
+                                 'which is something like "hex v3.0 words plain"')
+    arg_parser.add_argument('-b', '--binary', action='store_true',
+                            help='write output in binary instead of hexadecimal. be aware that interrupt vector header '
+                                 'code is always written in hexadecimal')
+    args = arg_parser.parse_args()
+
+    assemble(args.file, args.binary, args.hex_header, args.interrupt_header)
 
 
 if __name__ == '__main__':
