@@ -4,10 +4,8 @@
 
   <lib desc="#Wiring" name="0">
     <tool name="Splitter">
-      <a name="appear" val="center"/>
-      <a name="facing" val="north"/>
-      <a name="fanout" val="8"/>
-      <a name="incoming" val="8"/>
+      <a name="facing" val="west"/>
+      <a name="spacing" val="2"/>
     </tool>
     <tool name="Pin">
       <a name="appearance" val="NewPins"/>
@@ -17,6 +15,10 @@
     </tool>
     <tool name="Tunnel">
       <a name="width" val="8"/>
+    </tool>
+    <tool name="Constant">
+      <a name="value" val="0x8"/>
+      <a name="width" val="5"/>
     </tool>
   </lib>
   <lib desc="#Gates" name="1">
@@ -69,7 +71,11 @@
 </a>
     </tool>
   </lib>
-  <lib desc="#I/O" name="5"/>
+  <lib desc="#I/O" name="5">
+    <tool name="Button">
+      <a name="facing" val="south"/>
+    </tool>
+  </lib>
   <lib desc="#TTL" name="6"/>
   <lib desc="#TCL" name="7">
     <tool name="TclGeneric">
@@ -183,15 +189,56 @@ end TCL_Generic;
     <comp lib="0" loc="(360,660)" name="Clock">
       <a name="label" val="CLK"/>
     </comp>
+    <comp lib="0" loc="(380,320)" name="Splitter">
+      <a name="facing" val="north"/>
+      <a name="fanout" val="16"/>
+      <a name="incoming" val="16"/>
+      <a name="spacing" val="2"/>
+    </comp>
     <comp lib="5" loc="(360,630)" name="Button">
       <a name="label" val="RST"/>
     </comp>
+    <comp lib="5" loc="(760,290)" name="RGB Video">
+      <a name="height" val="32"/>
+      <a name="scale" val="8"/>
+      <a name="width" val="32"/>
+    </comp>
     <comp loc="(600,380)" name="COMPUTER"/>
+    <comp loc="(870,450)" name="SCREEN_DRIVER"/>
     <wire from="(360,630)" to="(370,630)"/>
     <wire from="(360,660)" to="(380,660)"/>
+    <wire from="(370,300)" to="(370,310)"/>
     <wire from="(370,420)" to="(370,630)"/>
     <wire from="(370,420)" to="(380,420)"/>
+    <wire from="(370,630)" to="(370,680)"/>
+    <wire from="(370,680)" to="(620,680)"/>
+    <wire from="(380,320)" to="(380,380)"/>
     <wire from="(380,440)" to="(380,660)"/>
+    <wire from="(380,660)" to="(380,670)"/>
+    <wire from="(380,670)" to="(610,670)"/>
+    <wire from="(600,380)" to="(630,380)"/>
+    <wire from="(610,300)" to="(610,670)"/>
+    <wire from="(610,300)" to="(770,300)"/>
+    <wire from="(620,310)" to="(620,680)"/>
+    <wire from="(620,310)" to="(760,310)"/>
+    <wire from="(630,380)" to="(630,450)"/>
+    <wire from="(630,450)" to="(650,450)"/>
+    <wire from="(760,290)" to="(760,310)"/>
+    <wire from="(770,290)" to="(770,300)"/>
+    <wire from="(770,300)" to="(780,300)"/>
+    <wire from="(780,290)" to="(780,300)"/>
+    <wire from="(800,290)" to="(800,370)"/>
+    <wire from="(800,370)" to="(990,370)"/>
+    <wire from="(810,290)" to="(810,380)"/>
+    <wire from="(810,380)" to="(980,380)"/>
+    <wire from="(820,290)" to="(820,390)"/>
+    <wire from="(820,390)" to="(970,390)"/>
+    <wire from="(870,450)" to="(970,450)"/>
+    <wire from="(870,470)" to="(980,470)"/>
+    <wire from="(870,490)" to="(990,490)"/>
+    <wire from="(970,390)" to="(970,450)"/>
+    <wire from="(980,380)" to="(980,470)"/>
+    <wire from="(990,370)" to="(990,490)"/>
   </circuit>
   <circuit name="COMPUTER">
     <a name="appearance" val="custom"/>
@@ -323,8 +370,10 @@ end TCL_Generic;
       <a name="addrWidth" val="15"/>
       <a name="appearance" val="logisim_evolution"/>
       <a name="contents">addr/data: 15 16
-17 8150 18 8150 19 8150 1a 8150
-1b 8150 1c 8150 1d 8150 87a0 8007
+ff 8088 0 80d0 6 8288 15 80c5
+100 8088 2 9708 13 80c2 80 8088
+1 80d0 8010 4 8007 1 80d0 8010
+6 8288 18 80c5 4 8007
 </a>
       <a name="dataWidth" val="16"/>
     </comp>
@@ -2786,5 +2835,225 @@ end TCL_Generic;
     <wire from="(960,780)" to="(970,780)"/>
     <wire from="(970,290)" to="(970,430)"/>
     <wire from="(970,430)" to="(1030,430)"/>
+  </circuit>
+  <circuit name="SCREEN_DRIVER">
+    <a name="appearance" val="logisim_evolution"/>
+    <a name="circuit" val="SCREEN_DRIVER"/>
+    <a name="circuitnamedboxfixedsize" val="true"/>
+    <a name="circuitvhdlpath" val=""/>
+    <a name="clabel" val=""/>
+    <a name="clabelfont" val="SansSerif bold 16"/>
+    <a name="clabelup" val="east"/>
+    <comp lib="0" loc="(1010,280)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="RGB_COLOR"/>
+      <a name="output" val="true"/>
+      <a name="radix" val="16"/>
+      <a name="width" val="24"/>
+    </comp>
+    <comp lib="0" loc="(370,260)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="label" val="SCREEN_INSTRUCTION"/>
+      <a name="width" val="16"/>
+    </comp>
+    <comp lib="0" loc="(440,260)" name="Splitter">
+      <a name="appear" val="right"/>
+      <a name="fanout" val="16"/>
+      <a name="incoming" val="16"/>
+      <a name="spacing" val="2"/>
+    </comp>
+    <comp lib="0" loc="(480,260)" name="Splitter">
+      <a name="facing" val="west"/>
+      <a name="spacing" val="2"/>
+    </comp>
+    <comp lib="0" loc="(490,300)" name="Splitter">
+      <a name="facing" val="west"/>
+      <a name="spacing" val="2"/>
+    </comp>
+    <comp lib="0" loc="(500,340)" name="Splitter">
+      <a name="facing" val="west"/>
+      <a name="spacing" val="2"/>
+    </comp>
+    <comp lib="0" loc="(510,380)" name="Splitter">
+      <a name="facing" val="west"/>
+      <a name="fanout" val="5"/>
+      <a name="incoming" val="5"/>
+      <a name="spacing" val="2"/>
+    </comp>
+    <comp lib="0" loc="(520,480)" name="Splitter">
+      <a name="facing" val="west"/>
+      <a name="fanout" val="5"/>
+      <a name="incoming" val="5"/>
+      <a name="spacing" val="2"/>
+    </comp>
+    <comp lib="0" loc="(700,380)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="Y"/>
+      <a name="output" val="true"/>
+      <a name="width" val="5"/>
+    </comp>
+    <comp lib="0" loc="(700,480)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="X"/>
+      <a name="output" val="true"/>
+      <a name="width" val="5"/>
+    </comp>
+    <comp lib="0" loc="(810,260)" name="Bit Extender">
+      <a name="out_width" val="24"/>
+      <a name="type" val="zero"/>
+    </comp>
+    <comp lib="0" loc="(810,300)" name="Bit Extender">
+      <a name="out_width" val="24"/>
+      <a name="type" val="zero"/>
+    </comp>
+    <comp lib="0" loc="(810,340)" name="Bit Extender">
+      <a name="out_width" val="24"/>
+      <a name="type" val="zero"/>
+    </comp>
+    <comp lib="0" loc="(840,320)" name="Constant">
+      <a name="value" val="0x8"/>
+      <a name="width" val="5"/>
+    </comp>
+    <comp lib="0" loc="(840,360)" name="Constant">
+      <a name="value" val="0x10"/>
+      <a name="width" val="5"/>
+    </comp>
+    <comp lib="3" loc="(1000,280)" name="Adder">
+      <a name="width" val="24"/>
+    </comp>
+    <comp lib="3" loc="(880,310)" name="Shifter">
+      <a name="width" val="24"/>
+    </comp>
+    <comp lib="3" loc="(880,350)" name="Shifter">
+      <a name="width" val="24"/>
+    </comp>
+    <comp lib="3" loc="(940,270)" name="Adder">
+      <a name="width" val="24"/>
+    </comp>
+    <comp lib="8" loc="(526,255)" name="Text">
+      <a name="font" val="SansSerif plain 12"/>
+      <a name="text" val="B"/>
+    </comp>
+    <comp lib="8" loc="(527,295)" name="Text">
+      <a name="font" val="SansSerif plain 12"/>
+      <a name="text" val="G"/>
+    </comp>
+    <comp lib="8" loc="(528,335)" name="Text">
+      <a name="font" val="SansSerif plain 12"/>
+      <a name="text" val="R"/>
+    </comp>
+    <comp lib="8" loc="(529,375)" name="Text">
+      <a name="font" val="SansSerif plain 12"/>
+      <a name="text" val="Y"/>
+    </comp>
+    <comp lib="8" loc="(532,475)" name="Text">
+      <a name="font" val="SansSerif plain 12"/>
+      <a name="text" val="X"/>
+    </comp>
+    <comp loc="(700,260)" name="COLOR_CONVERTER"/>
+    <comp loc="(700,300)" name="COLOR_CONVERTER"/>
+    <comp loc="(700,340)" name="COLOR_CONVERTER"/>
+    <wire from="(1000,280)" to="(1010,280)"/>
+    <wire from="(370,260)" to="(440,260)"/>
+    <wire from="(460,310)" to="(470,310)"/>
+    <wire from="(460,330)" to="(470,330)"/>
+    <wire from="(460,350)" to="(480,350)"/>
+    <wire from="(460,370)" to="(480,370)"/>
+    <wire from="(460,390)" to="(490,390)"/>
+    <wire from="(460,410)" to="(490,410)"/>
+    <wire from="(460,430)" to="(490,430)"/>
+    <wire from="(460,450)" to="(490,450)"/>
+    <wire from="(460,470)" to="(490,470)"/>
+    <wire from="(460,490)" to="(500,490)"/>
+    <wire from="(460,510)" to="(500,510)"/>
+    <wire from="(460,530)" to="(500,530)"/>
+    <wire from="(460,550)" to="(500,550)"/>
+    <wire from="(460,570)" to="(500,570)"/>
+    <wire from="(480,260)" to="(540,260)"/>
+    <wire from="(490,300)" to="(540,300)"/>
+    <wire from="(500,340)" to="(540,340)"/>
+    <wire from="(510,380)" to="(700,380)"/>
+    <wire from="(520,480)" to="(700,480)"/>
+    <wire from="(700,260)" to="(770,260)"/>
+    <wire from="(700,300)" to="(770,300)"/>
+    <wire from="(700,340)" to="(770,340)"/>
+    <wire from="(810,260)" to="(900,260)"/>
+    <wire from="(810,300)" to="(840,300)"/>
+    <wire from="(810,340)" to="(840,340)"/>
+    <wire from="(880,310)" to="(890,310)"/>
+    <wire from="(880,350)" to="(950,350)"/>
+    <wire from="(890,280)" to="(890,310)"/>
+    <wire from="(890,280)" to="(900,280)"/>
+    <wire from="(940,270)" to="(960,270)"/>
+    <wire from="(950,290)" to="(950,350)"/>
+    <wire from="(950,290)" to="(960,290)"/>
+  </circuit>
+  <circuit name="COLOR_CONVERTER">
+    <a name="appearance" val="custom"/>
+    <a name="circuit" val="COLOR_CONVERTER"/>
+    <a name="circuitnamedboxfixedsize" val="true"/>
+    <a name="circuitvhdlpath" val=""/>
+    <a name="clabel" val=""/>
+    <a name="clabelfont" val="SansSerif bold 16"/>
+    <a name="clabelup" val="east"/>
+    <appear>
+      <circ-anchor facing="east" height="6" width="6" x="207" y="57"/>
+      <circ-port height="10" pin="510,300" width="10" x="205" y="55"/>
+      <circ-port height="8" pin="310,350" width="8" x="46" y="56"/>
+      <rect fill="none" height="42" stroke="#000000" stroke-width="2" width="141" x="60" y="49"/>
+      <rect height="16" stroke="none" width="141" x="60" y="74"/>
+      <rect height="4" stroke="none" width="10" x="200" y="58"/>
+      <rect height="4" stroke="none" width="10" x="50" y="58"/>
+      <text dominant-baseline="alphabetic" fill="#404040" font-family="Courier 10 Pitch" font-size="12" text-anchor="end" x="195" y="64"/>
+      <text dominant-baseline="alphabetic" fill="#404040" font-family="Courier 10 Pitch" font-size="12" text-anchor="start" x="65" y="64"/>
+      <text dominant-baseline="alphabetic" fill="#ffffff" font-family="Courier 10 Pitch" font-size="14" font-weight="bold" text-anchor="middle" x="130" y="86">COLOR_CONVERTER</text>
+    </appear>
+    <comp lib="0" loc="(310,350)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="width" val="2"/>
+    </comp>
+    <comp lib="0" loc="(330,280)" name="Constant">
+      <a name="value" val="0x55"/>
+      <a name="width" val="8"/>
+    </comp>
+    <comp lib="0" loc="(330,310)" name="Constant">
+      <a name="value" val="0xaa"/>
+      <a name="width" val="8"/>
+    </comp>
+    <comp lib="0" loc="(360,260)" name="Constant">
+      <a name="value" val="0x0"/>
+      <a name="width" val="8"/>
+    </comp>
+    <comp lib="0" loc="(360,330)" name="Constant">
+      <a name="value" val="0xff"/>
+      <a name="width" val="8"/>
+    </comp>
+    <comp lib="0" loc="(510,300)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
+      <a name="width" val="8"/>
+    </comp>
+    <comp lib="2" loc="(410,300)" name="Multiplexer">
+      <a name="enable" val="false"/>
+      <a name="select" val="2"/>
+      <a name="width" val="8"/>
+    </comp>
+    <wire from="(310,350)" to="(390,350)"/>
+    <wire from="(330,280)" to="(360,280)"/>
+    <wire from="(330,310)" to="(360,310)"/>
+    <wire from="(360,260)" to="(370,260)"/>
+    <wire from="(360,280)" to="(360,290)"/>
+    <wire from="(360,290)" to="(370,290)"/>
+    <wire from="(360,300)" to="(360,310)"/>
+    <wire from="(360,300)" to="(370,300)"/>
+    <wire from="(360,330)" to="(370,330)"/>
+    <wire from="(370,260)" to="(370,280)"/>
+    <wire from="(370,310)" to="(370,330)"/>
+    <wire from="(390,320)" to="(390,350)"/>
+    <wire from="(410,300)" to="(510,300)"/>
   </circuit>
 </project>
