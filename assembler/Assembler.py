@@ -3,7 +3,7 @@ import argparse
 from Parser import *
 from Code import *
 
-INTERRUPT_VECTOR_CODE = '@MASK\nD=M\n@INTERRUPT_FUNCTION\nD&1;JGT\nD=0\n'
+INTERRUPT_VECTOR_CODE = 'S=A\nS=D\n@MASK\nD=M\n@INTERRUPT_FUNCTION\nD&1;JGT\nD=S\nA=S\n'
 
 
 def assemble(file_name, is_binary=False, has_hex_header=True, has_interrupt_header=False, suffix=''):

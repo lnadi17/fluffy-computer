@@ -1,30 +1,20 @@
+@DDR
+M = 1
 @3
 D = A
 @MASK
 M = D
 @PRESCALER
-M = 1
+M = D - 1
 
 (LOOP)
-@R0
-M = M + 1
-M = M + 1
-M = M + 1
-M = M + 1
-M = M + 1
-M = M + 1
 @LOOP
-0 ; JEQ
+0 ; JMP
 
 (INTERRUPT_FUNCTION)
-SD = 1
-SD = D + 1
-SD = D + 1
-S = D + 1
-S
-S
-S
-S
+// Trigger LED
+@PORT
+M = !M
 
 D = S
 @OLD_A

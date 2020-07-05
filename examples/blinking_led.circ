@@ -348,11 +348,8 @@ end TCL_Generic;
       <a name="addrWidth" val="15"/>
       <a name="appearance" val="logisim_evolution"/>
       <a name="contents">addr/data: 15 16
-c080 c0c0 3 8288 17 95c1 e088 e0a0
-3 8088 3 80d0 4 8150 7 6*8390
-e 8002 c148 c1c8 c1c8 c1c0 4*e080 e088
-17 e090 18 e090 17 c280 18 82a0
-e0a7
+3 8288 d 95c1 8008 0 8150 3
+8088 3 80d0 4 85d0 1 9290
 </a>
       <a name="dataWidth" val="16"/>
     </comp>
@@ -754,6 +751,10 @@ e0a7
       <a name="facing" val="south"/>
       <a name="size" val="30"/>
     </comp>
+    <comp lib="2" loc="(1000,580)" name="Multiplexer">
+      <a name="enable" val="false"/>
+      <a name="width" val="16"/>
+    </comp>
     <comp lib="2" loc="(1650,1110)" name="Multiplexer">
       <a name="enable" val="false"/>
       <a name="width" val="16"/>
@@ -794,6 +795,8 @@ e0a7
     <comp loc="(520,130)" name="C_INST_PARSER"/>
     <comp loc="(520,340)" name="INST_TYPE"/>
     <comp loc="(990,900)" name="SC"/>
+    <wire from="(1000,580)" to="(1090,580)"/>
+    <wire from="(1010,320)" to="(1010,600)"/>
     <wire from="(1030,620)" to="(1030,630)"/>
     <wire from="(1030,620)" to="(1550,620)"/>
     <wire from="(1060,190)" to="(1060,530)"/>
@@ -804,7 +807,7 @@ e0a7
     <wire from="(1080,1090)" to="(1380,1090)"/>
     <wire from="(1080,660)" to="(1190,660)"/>
     <wire from="(1080,900)" to="(1080,1090)"/>
-    <wire from="(1090,570)" to="(1090,840)"/>
+    <wire from="(1090,580)" to="(1090,840)"/>
     <wire from="(1090,840)" to="(1240,840)"/>
     <wire from="(1160,1010)" to="(1160,1070)"/>
     <wire from="(1160,1010)" to="(1240,1010)"/>
@@ -941,7 +944,9 @@ e0a7
     <wire from="(560,960)" to="(830,960)"/>
     <wire from="(570,290)" to="(570,620)"/>
     <wire from="(570,620)" to="(940,620)"/>
-    <wire from="(580,170)" to="(580,340)"/>
+    <wire from="(580,170)" to="(580,320)"/>
+    <wire from="(580,320)" to="(1010,320)"/>
+    <wire from="(580,320)" to="(580,340)"/>
     <wire from="(580,340)" to="(590,340)"/>
     <wire from="(580,360)" to="(580,380)"/>
     <wire from="(580,360)" to="(590,360)"/>
@@ -984,8 +989,8 @@ e0a7
     <wire from="(790,410)" to="(790,430)"/>
     <wire from="(790,500)" to="(790,570)"/>
     <wire from="(790,500)" to="(890,500)"/>
-    <wire from="(790,570)" to="(1090,570)"/>
     <wire from="(790,570)" to="(790,750)"/>
+    <wire from="(790,570)" to="(970,570)"/>
     <wire from="(790,750)" to="(1490,750)"/>
     <wire from="(800,460)" to="(800,550)"/>
     <wire from="(800,550)" to="(960,550)"/>
@@ -1014,7 +1019,11 @@ e0a7
     <wire from="(950,390)" to="(950,490)"/>
     <wire from="(950,490)" to="(1070,490)"/>
     <wire from="(960,540)" to="(960,550)"/>
+    <wire from="(960,590)" to="(960,620)"/>
+    <wire from="(960,590)" to="(970,590)"/>
+    <wire from="(960,620)" to="(1030,620)"/>
     <wire from="(980,520)" to="(990,520)"/>
+    <wire from="(980,600)" to="(1010,600)"/>
     <wire from="(980,780)" to="(1240,780)"/>
     <wire from="(980,780)" to="(980,850)"/>
     <wire from="(990,510)" to="(1070,510)"/>
