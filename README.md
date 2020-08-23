@@ -13,11 +13,11 @@ Logisim-ში აწყობილი 16-ბიტიანი კომპი
   + [წყვეტა](#წყვეტა)
   + [ასემბლერი](#ასემბლერი)
 * [სამაგალითო პროგრამები](#სამაგალითო-პროგრამები)
-  + [blinking_led](#blinking-led)
-  + [rgb_led_controller](#rgb-led-controller)
-  + [screen_and_keyboard](#screen-and-keyboard)
-  + [paint_screen_white](#paint-screen-white)
-  + [display_picture](#display-picture)
+  + [blinking_led](#blinking_led)
+  + [rgb_led_controller](#rgb_led_controller)
+  + [screen_and_keyboard](#screen_and_keyboard)
+  + [paint_screen_white](#paint_screen_white)
+  + [display_picture](#display_picture)
 
 ## გამოყენების ინსტრუქცია
 თუ გვსურს საჩვენებელი პროგრამების გაშვება, უნდა გავხსნათ Logisim და ავირჩიოთ სასურველი წრედი examples ფოლდერიდან.
