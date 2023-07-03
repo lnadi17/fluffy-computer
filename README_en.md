@@ -145,21 +145,21 @@ Comparison Table:
 1|1|0|JLE|If out ≤ 0 jump
 1|1|1|JMP|jump
 
-### მეხსიერება
-მეხსიერების ჩიპი არის რამდენიმე მეხსიერების ერთეულის ერთობა. Stack და Heap ფიზიკურადაა გაყოფილი და მათი გადაფარვა არასდროს მოხდება. ასევე, არის სპეციალური რეგისტრები, რომლებსაც სათითაოდ განვიხილავთ ინდექსის მიხედვით. თუ იმ მისამართზე ვეცდებით ჩაწერას, რასაც Read Only წვდომა აქვს, იქ ჩაწერის ბრძანებას ეფექტი არ ექნება.
+### Memory
+Memory chip consists of several memory units. Stack and Heap are separated physically and they will never overlap. There are also special registers that will be individually addressed below. When attempting to write to an address which has a Read Only access, the write operation will have no effect.
 
-ინდექსი|დასახელება|წვდომა|დანიშნულება
+Index | Name | Access | Description
 |:---:|:---:|:---:|---|
-0|DDR|Read/Write|მონაცემების მიმართულების რეგისტრი. სადაც 1 წერია, აღნიშნავს რომ ის ბიტი PORT-ზე არის გამოსასვლელი. სადაც 0 წერია, აღნიშნავს რომ ის ბიტი PIN-ზე არის შესასვლელი.
-1|PORT|Read/Write|პორტ რეგისტრი. სადაც DDR-ში 1 წერია, შესაბამისი ბიტებიდან პორტის მნიშვნელობა კომპიუტერის გამოსასვლელზე აისახება.
-2|PIN|Read Only|პინ რეგისტრი. სადაც DDR-ში 0 წერია, შესაბამისი ბიტებიდან კომპიუტერის შესასვლელის მნიშვნელობა პინზე აისახება.
-3|MASK|Read/Write|მასკ რეგისტრი აკონტროლებს ტაიმერს. თუ მასკის ყველაზე მარჯვენა ბიტზე 1 წერია, ნიშნავს რომ Overflow Interrupt დაშვებულია. მარჯვნიდან მეორე ბიტი კი აკონტროლებს ჩართულია თუ არა ტაიმერი.
-4|PRESCALER|Read/Write|პრესკალერ რეგისტრს იყენებს ტაიმერი. რა მნიშვნელობაც წერია მასში, ტაიმერი იმდენი ტაქტის შემდეგ ზრდის მთვლელს.
-5|COUNTER|Read/Write|ქაუნთერ რეგისტრში იწერება ტაიმერის მთვლელის მნიშვნელობა. როცა ის 255-ს მიაღწევს, განულდება და შესრულდება წყვეტა თუ ეს დაშვებულია.  
-6|KEYBOARD|Read Only|კლავიატურის რეგისტრი პირდაპირაა დაკავშირებული კომპიუტერის შესასვლელთან. მასში შესაძლებელია ნებისმიერი ASCII მნიშვნელობის ჩაწერა გარედან და შემდეგ კოდიდან წაკითხვა. 
-7-22|R0-R15|Read/Write|16 დამხმარე რეგისტრი, რომლებსაც შეგვიძლია სახელით მივმართოთ და პროგრამის საჭიროებების მიხედვით გამოვიყენოთ.
-23+|–|Read/Write|თუ ასემბლიში შევქმნით ცვლადს, ყოველი ახალი შექმნილი ცვლადის მისამართი მეხსიერებაში იქნება (23 + მერამდენეცაა_ეს_ცვლადი)
-7-32774|–|Read/Write|Random Access Memory. გამოიყენება პროგრამის კონკრეტული საჭიროებებიდან გამომდინარე. ვერ მივმართავთ სახელით.
+0 | DDR | Read/Write | Data Direction Register. When a bit is set to 1, it indicates that the corresponding bit is an output on the PORT. When a bit is set to 0, it indicates that the corresponding bit is an input on the PIN.
+1 | PORT | Read/Write | Port Register. When the corresponding bit in DDR is set to 1, the value of the port is stored on the computer's output pins.
+2 | PIN | Read Only | Pin Register. When the corresponding bit in DDR is set to 0, the value of the computer's input pins is stored on the pin.
+3 | MASK | Read/Write | Mask Register controls the timer. If the rightmost bit of the mask is set to 1, it indicates that the Overflow Interrupt is enabled. The second bit from the right controls whether the timer is running or not.
+4 | PRESCALER | Read/Write | Prescaler Register used by the timer. The value written to it determines how many clock ticks it takes for the timer to increment.
+5 | COUNTER | Read/Write | Counter Register stores the value of the timer's counter. When it reaches 255, it resets and interrupt function is performed if it is enabled.
+6 | KEYBOARD | Read Only | Keyboard Register directly connected to the computer's input. It allows writing any ASCII value from the keyboard and reading from the code.
+7-22 | R0-R15 | Read/Write | 16 general-purpose registers that can be accessed by name and used according to program requirements.
+23+ | – | Read/Write | If we create a variable in assembly, each newly created variable will be stored in memory at the address (23 + the number of variables created so far).
+7-32774 | – | Read/Write | Random Access Memory. Used for the specific needs of the program. We cannot address it by name.
 
 ასემბლიში მეხსიერების იმ ნაწილებს, რომლებსაც დასახელება აქვთ, ინდექსის გარდა, შეგვიძლია სახელით მივმართოთ. მაგალითად:
 ```
