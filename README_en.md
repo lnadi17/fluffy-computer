@@ -29,7 +29,7 @@ For more detailed information, refer to the detailed description section.
 ## Detailed Description
 ### Assembly Instructions
 #### A-instruction
-@[number] – 0 [a0 a1 a2 a3 a4 a5 a6 a7 a8 a9 a10 a11 a12 a13 a14]
+`@[number] – 0 [a0 a1 a2 a3 a4 a5 a6 a7 a8 a9 a10 a11 a12 a13 a14]`
 
 a0 ... a14 represents a 15-bit address that we select in memory, and then we can access the information written at this location by using the M instruction. For example,
 ```
