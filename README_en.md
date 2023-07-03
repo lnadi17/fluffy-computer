@@ -1,7 +1,7 @@
 # fluffy-computer
 A 16-bit computer implemented in Logisim, which follows the architecture of the Hack computer. It can execute programs written in a special assembly language. It includes a timer and I/O ports, as well as keyboard port and many more.
 
-## სარჩევი
+## Table of Contents
 
 * [Usage Instructions](#Usage-Instructions)
 * [Detailed Description](#Detailed-Description)
@@ -26,29 +26,30 @@ If you want to write your own program, create an .asm file and use the Assembler
 
 For more detailed information, refer to the detailed description section.
 
-## დეტალური აღწერა
-### ასემბლის ინსტრუქციები
-#### A ინსტრუქცია
-`@[რიცხვი] – 0 [a0 a1 a2 a3 a4 a5 a6 a7 a8 a9 a10 a11 a12 a13 a14]`
+## Detailed Description
+### Assembly Instructions
+#### A-instruction
+@[number] – 0 [a0 a1 a2 a3 a4 a5 a6 a7 a8 a9 a10 a11 a12 a13 a14]
 
-a0 ... a14 არის 15 ბიტიანი მისამართი, რომელსაც მეხსიერებაში ავირჩევთ და შემდეგ ბრძანებებზე შევძლებთ M-ის დაწერით მივწვდეთ ამ ადგილას ჩაწერილ ინფორმაციას. მაგალითად,
+a0 ... a14 represents a 15-bit address that we select in memory, and then we can access the information written at this location by using the M instruction. For example,
 ```
 @3
 ```
-აირჩევს მე-3 ადგილს მეხსიერებაში. ამის შემდეგ თუ დავწერთ,
+selects the memory location 3. If we then write,
 ```
 D = M
 ```
-მაშინ მეხსიერების მე-3 რეგისტრში ჩაწერილი ინფორმაცია ჩაიწერება D რეგისტრში.
+the information stored at memory location 3 will be loaded into register D.
 
-არსებობს A ინსტრუქციის მეორენაირი გამოყენებაც. როდესაც კომპიუტერს მივცემთ გადახტომის ინსტრუქციას, შემდეგი ბრძანება გაეშვება ROM-ის იმ ინდექსის მქონე რეგისტრიდან, რაც A რეგისტრში წერია. მაგალითად, განვილიხილოთ Unconditional Jump-ის შემთხვევა:
+The A-instruction also has a secondary usage. When we give the computer a jump instruction, the next instruction is executed from the ROM index that is held in the A register. For example, let's consider the case of an Unconditional Jump:
 ```
 @5
 0 ; JMP
 ```
-ამის ეფექტი ის იქნება, რომ შემდეგი ინსტრუქცია გაეშვება ROM-ის მე-5 რეგისტრიდან.
+The effect of this is that the next instruction will be executed from the 5th register of ROM.
 
-A ინსტრუქციის ორობით ჩანაწერში პირველი ბიტი აუცილებლად ნულია, დანარჩენი კი სასურველი რიცხვის ორობით ჩანაწერს განსაზღვრავს. იმის გამო, რომ 16 ბიტიანი ინსტრუქციიდან 1 დაკავებულია, ერთი ინსტრუქციით შეგვიძლია ავირჩიოთ მაქსიმუმ (2<sup>15</sup> – 1).
+In the binary representation of the A-instruction, the first bit must be zero, and the remaining bits define the desired number in binary. Since the first bit is always zero, the remaining 15 bits define the desired number. Therefore, the range of representable numbers is from 0 to (2^15 – 1).
+
 #### C ინსტრუქცია
 `destination = compute ; jump_condition – 1 [s] [p] [a0 a1 a2] [m] [o0 o1 o2] [d0 d1 d2] [j0 j1 j2]`
 
