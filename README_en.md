@@ -50,29 +50,29 @@ The effect of this is that the next instruction will be executed from the 5th re
 
 In the binary representation of the A-instruction, the first bit must be zero, and the remaining bits define the desired number in binary. Since the first bit is always zero, the remaining 15 bits define the desired number. Therefore, the range of representable numbers is from 0 to (2^15 – 1).
 
-#### C ინსტრუქცია
+#### C Instruction
 `destination = compute ; jump_condition – 1 [s] [p] [a0 a1 a2] [m] [o0 o1 o2] [d0 d1 d2] [j0 j1 j2]`
 
-ამ ტიპის ინსტრუქცია ბევრად უფრო კომპლექსურია. ტოლობის მარჯვენა მხარეს ვწერთ იმ ოპერაციას, რაც გვინდა რომ ALU-მ გამოთვალოს. ტოლობის მარცხენა მხარეს ვწერთ იმ რეგისტრებს, რომლებშიც გვინდა რომ ეს შედეგი ჩაიწეროს. წერტილ-მძიმის შემდეგ დაწერილი პირობით ALU-ს შედეგი დარდება 0-ს და თუ ეს პირობა სრულდება, ROM-ი ხტება A რეგისტრში ჩაწერილ მნიშვნელობაზე. განვიხილოთ მაგალითი:
+This type of instruction is much more complex. On the right side, we write the operation that we want the ALU to perform. On the left side, we write the registers where we want the result to be stored. After the semicolon, we write the condition for the ALU's output. If the condition evaluates to true, the ROM jumps to the value stored in register A. Let's consider an example:
 ```
 AMDS = D + A ; JGT
 ```
-D რეგისტრში მყოფ მნიშვნელობას დაემატება A რეგისტრში მყოფი მნიშვნელობა. ამის შემდეგ, მიღებული შედეგი (ამ შემთხვევაში D + A) დარდება 0-ს და თუ ეს შედარება ჭეშმარიტია, მაშინ ხტება იმ ინსტრუქციაზე, რომლის ინდექსიც A რეგისტრში წერია. ამის შემდეგ M, D და A რეგისტრებში (M-ში იგულისხმება Memory-ში იმ რეგისტრის მნიშვნელობა, რომლის ინდექსიც ემთხვევა A რეგისტრში მყოფ მნიშვნელობას) იწერება ახალი მნიშვნელობები. ჩვენს შემთხვევაში გადახტომა შესრულდებოდა მაშინ, თუ JGT (**J**UMP IF **G**REATER **T**HAN) პირობა იქნებოდა ჭეშმარიტი, ანუ (D + A) მეტი იქნებოდა ნულზე. ასეთი ტიპის ინსტრუქციაში გასათვალისწინებელია, რომ ჯერ A რეგისტრის მნიშვნელობაზე გადადის ROM-ი და შემდეგ ხდება A-სთვის მნიშვნელობის მინიჭება.
+The value stored in register D is added to the value stored in register A. After that, the resulting value (D + A in this case) is compared to 0, and if this comparison evaluates to true, the ROM jumps to the instruction whose index is stored in register A. After this, the values are written to registers M, D, and A (M register means the register which has the index equal to the value of A). In our case, the jump would have occurred if the JGT (**J**ump if **G**reater **T**han) condition were true, meaning (D + A) was greater than zero. It's important to note that in this type of instruction, the ROM first jumps to the value stored in register A, and then the assignment of the value to register A takes place.
 
-C ინსტრუქციის გამოყენების სხვა მაგალითებია:
+These are the other examples for C instruction:
 ```
-A = A + 1 // A რეგისტრის მნიშვნელობა გაიზარდოს 1-ით
+A = A + 1 // Increment the value of register A by 1
 M = M * D // Memory[A] = Memory[A] * D
-DM = -1 // D და Memory[A] რეგისტრებში იწერება -1
-ASD = D ^ A // A-სა და D-ში იწერება D xor A, აგრეთვე ემატება სტეკში
-D = S + 1 // სტეკიდან ვიღებთ მნიშვნელობას, ემატება 1 და იწერება D-ში
-S // სტეკიდან ვიღებთ მნიშვნელობას
-!D ; JEQ // ვითვლით (not D) მნიშვნელობას და თუ 0-ია, ვხტებით
-0 ; JMP // უპირობოდ ვხტებით A-ში მყოფ მნიშვნელობაზე
+DM = -1 // Set the values of register D and Memory[A] to -1
+ASD = D ^ A // Perform XOR operation between the D and A registers and store them in A, D and stack
+D = S + 1 // Pop the value from stack, add 1 to that value and store the result in register D
+S // Pop a value from the stack
+!D ; JEQ // Negate the value in register D and jump if it is equal to 0
+0 ; JMP // Unconditionally jump to the instruction located at the address specified by the value in register A
 ```
-და ა.შ.
+and so on.
 
-თუ გვსურს ამ ბრძანებების ორობითში გადაყვანა, თან უნდა გვქონდეს ასემბლერი ან C ინსტრუქციისთვის საჭირო ცხრილები და ვიცოდეთ რომელი ბიტი რას აღნიშნავს.
+If you want to convert these instructions into binary, you would need an assembler or a table that indicates the binary representation of each instruction and its corresponding bits.
 
 `1 [s] [p] [a0 a1 a2] [m] [o0 o1 o2] [d0 d1 d2] [j0 j1 j2]`
 
