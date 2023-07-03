@@ -1,6 +1,8 @@
 # fluffy-computer
 A 16-bit computer implemented in Logisim, which follows the architecture of the Hack computer. It can execute programs written in a special assembly language. It includes a timer and I/O ports, as well as keyboard port and many more.
 
+[![GE Flag](https://flagcdn.com/16x12/ge.png)](./README-ge.md) [GE](./README-ge.md) | [![US Flag](https://flagcdn.com/16x12/us.png)](./README.md) US
+
 ## Table of Contents
 
 * [Usage Instructions](#Usage-Instructions)
