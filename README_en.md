@@ -161,34 +161,33 @@ Index | Name | Access | Description
 23+ | – | Read/Write | If we create a variable in assembly, each newly created variable will be stored in memory at the address (23 + the number of variables created so far).
 7-32774 | – | Read/Write | Random Access Memory. Used for the specific needs of the program. We cannot address it by name.
 
-ასემბლიში მეხსიერების იმ ნაწილებს, რომლებსაც დასახელება აქვთ, ინდექსის გარდა, შეგვიძლია სახელით მივმართოთ. მაგალითად:
+In assembly, we can refer to the parts of memory that have names, other than using the index, by using their names. For example:
 ```
-@MASK // იგივეა რაც @3
-@KEYBOARD // იგივეა რაც @6
-@R0 // იგივეა რაც @7
-@R1 // იგივეა რაც @8
+@MASK // Same as @3
+@KEYBOARD // Same as @6
+@R0 // Same as @7
+@R1 // Same as @8
+
+Also, in assembly, we can create variables with custom names. For example:
+```
+@x // The name x is assigned to the first available memory, so it occupies register 23
+M = 1 // Write 1 to Memory[23]
+@y // The name y is assigned to the next available memory, so it occupies register 24
+D = A // Store the value in A to D
+@x // Same as @23
+M = M + 1 // Increment the value stored in Memory[23] by 1
+@y // Same as @24
 ```
 
-აგრეთვე, ასემბლიში შეგვიძლია საკუთარი დასახელების ცვლადების შექმნა. მაგალითად:
+There is another way to create custom names, which simplifies jumping to instructions. Let's consider an example:
 ```
-@x // x დასახელება პირველად შეხვდა, ამიტომ მეხსიერებაში გამოუყოფს 23-ე რეგისტრს
-M = 1 // Memory[23]-ში ჩაიწერება 1
-@y // y დასახელება პირველად შეხვდა, ამიტომ მეხსიერებაში გამოიყოფა 24-ე რეგისტრი ამ სახელით
-D = A // D-ში ჩაიწერება 24
-@x // იგივეა, რაც @23
-M = M + 1 // Memory[23]-ში ჩაწერილი მნიშვნელობა გაიზრდება 1-ით
-@y // იგივეა, რაც @24
-```
-
-საკუთარი დასახელებების შექმნა კიდევ ერთი გზითაა შესაძლებელი, რომელიც ინსტრუქციებზე გადახტომას გაგვიმარტივებს. განვიხილოთ მაგალითი:
-```
-(LOOP) // შეიქმნება დასახელება LOOP, რომელიც მიუთითებს მის მომდევნო ინსტრუქციის ინდექსზე ROM-ში
+(LOOP) // Create a label named LOOP that points to the next instruction's index in the ROM
 D = 1
 @LOOP
-0 ; JMP // ხტება (LOOP) ხაზის მომდევნო ხაზზე, რაც ჩვენს შემთხვევაში არის D = 1
+0 ; JMP // Jump to the instruction at the next line of LOOP label, which in our case is D = 1
 ```
 
-ეს ფუნქციონალი იმპლემენტირებულია ასემბლერში და გამოსადეგია, მაგალითად, ციკლების იმპლემენტირებისას. აგრეთვე, თუ გვსურს წყვეტის ფუნქციის დაწერა, ასემბლერი ელის რომ წყვეტის ფუნქცია იწყება (INTERRUPT_FUNCTION) ხაზის შემდეგ.
+This functionality is implemented in the assembler and can be used, for example, when implementing loops. Additionally, if we want to write an interrupt function, the assembler expects us to write the interrupt function instructions right after (INTERRUPT_FUNCTION) line.
 
 ### წყვეტა
 თუ ტაიმერის მთვლელის მნიშვნელობა მიაღწევს 255-ს და დაშვებულია წყვეტა (MASK-ში ყველაზე მარჯვენა ბიტი არის 1), მაშინ კომპიუტერი წყვეტს მიმდინარე ინსტრუქციების შესრულებას და გადადის წყვეტის ფუნქციის შესრულებაზე. ამისთვის აუცილებელია ასემბლერის წინასწარ გაფრთხილება *-ih/--interrupt-header* არგუმენტით, რომელიც გამომავალ ორობით ფაილს თავში ამატებს მცირე ზომის კოდს, რომელიც განსაზღვრავს თუ რომელ ინსტრუქციაზე უნდა გადახტეს კომპიუტერი წყვეტის შემთხვევაში და რომელიც ასევე ინახავს A და D რეგისტრების მნიშვნელობებს სტეკში.
