@@ -1,7 +1,7 @@
 # fluffy-computer
 Logisim-ში აწყობილი 16-ბიტიანი კომპიუტერი, რომლის არქიტექტურა წააგავს Hack კომპიუტერს. შეუძლია სპეციალურ ასემბლიში დაწერილი პროგრამების გაშვება. ჩაშენებული აქვს ტაიმერი და I/O პორტები, აქვს კლავიატურის შესაერთებელი.
 
-[![GE Flag](https://flagcdn.com/16x12/ge.png)](./README-ge.md) GE | [![US Flag](https://flagcdn.com/16x12/us.png)](./README.md) [US](./README-ge.md)
+[![GE Flag](https://flagcdn.com/16x12/ge.png)](./README-ge.md) GE | [![US Flag](https://flagcdn.com/16x12/us.png)](./README.md) [US](./README.md)
 
 ## სარჩევი
 
