@@ -167,6 +167,7 @@ In assembly, we can refer to the parts of memory that have names, other than usi
 @KEYBOARD // Same as @6
 @R0 // Same as @7
 @R1 // Same as @8
+```
 
 Also, in assembly, we can create variables with custom names. For example:
 ```
@@ -189,14 +190,14 @@ D = 1
 
 This functionality is implemented in the assembler and can be used, for example, when implementing loops. Additionally, if we want to write an interrupt function, the assembler expects us to write the interrupt function instructions right after (INTERRUPT_FUNCTION) line.
 
-### წყვეტა
-თუ ტაიმერის მთვლელის მნიშვნელობა მიაღწევს 255-ს და დაშვებულია წყვეტა (MASK-ში ყველაზე მარჯვენა ბიტი არის 1), მაშინ კომპიუტერი წყვეტს მიმდინარე ინსტრუქციების შესრულებას და გადადის წყვეტის ფუნქციის შესრულებაზე. ამისთვის აუცილებელია ასემბლერის წინასწარ გაფრთხილება *-ih/--interrupt-header* არგუმენტით, რომელიც გამომავალ ორობით ფაილს თავში ამატებს მცირე ზომის კოდს, რომელიც განსაზღვრავს თუ რომელ ინსტრუქციაზე უნდა გადახტეს კომპიუტერი წყვეტის შემთხვევაში და რომელიც ასევე ინახავს A და D რეგისტრების მნიშვნელობებს სტეკში.
+### Interrupt
+If the value of the timer counter reaches 255 and the overflow is enabled (the rightmost bit of MASK is 1), the computer interrupts the execution of the current instructions and jumps to the interrupt function. For this, it is necessary to give the assembler the *-ih/--interrupt-header* argument. This argument adds a small piece of code to the beginning of the generated output file, which specifies the instruction where the computer jumps in case of an interrupt. It also saves the values of registers A and D to the stack before the jump.
 
-როცა ხდება წყვეტა, პირველ რიგში PC-ს მნიშვნელობა ემატება სტეკში და რესეტდება (ნულდება). შემდეგი ინსტრუქცია უკვე ROM[0]-დან ეშვება, სადაც ასემბლერის მიერ ჩამატებული Interrupt Header-ის კოდი წერია. ეს კოდი სტეკში ამატებს ჯერ A-ს, შემდეგ კი D-ს. ამის შემდეგ გადახტება წყვეტის ფუნქციაზე, რომლის დასაწყისიც (INTERRUPT_FUNCTION) ხაზით არის მონიშნული დეველოპერის მიერ. წყვეტის ფუნქციის ბოლოს A, D და PC რეგისტრების მნიშვნელობების აღდგენა დეველოპერის პასუხისმგებლობაა. თუ გსურთ, რომ წყვეტის ფუნქციის შესრულების შემდეგ ყველა ჩამოთვლილი რეგისტრის მნიშვნელობა აღდგეს, გთავაზობთ ერთ-ერთ შესაძლო კოდს, რომელიც ამას გააკეთებს:
+When an interrupt occurs, the value of PC is pushed onto the stack and reset to zero. The next instruction is fetched from ROM[0], where the code of the Interrupt Header added by the assembler is written. This code first pushes the value of A onto the stack and then pushes the value of D. After that, it jumps to the interrupt function, whose starting point (INTERRUPT_FUNCTION) is designated by the developer. At the end of the interrupt function, the restoration of the values of A, D, and PC registers is the responsibility of the developer. If you want all the previously saved register values to be restored after the execution of the interrupt function, we suggest using the following code:
 ```
 (INTERRUPT_FUNCTION)
 //
-// აქ უნდა ეწეროს თქვენი წყვეტის ფუნქციის კოდი
+// Here you should write your interrupt function code
 //
 D = S
 @OLD_A
