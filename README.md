@@ -256,7 +256,7 @@ When a keyboard and TTY screen are connected to the computer, pressing the keys 
 ![](examples/gifs/screen_and_keyboard.gif)
 
 ### paint_screen_white
-This program paints the attached screen white. The SCREEN_DRIVER chip handles the instruction sent to the output port.
+This program paints the attached screen white. The SCREEN_DRIVER chip handles the instruction sent from the output port.
 
 ![](examples/gifs/paint_screen_white.gif)
 
